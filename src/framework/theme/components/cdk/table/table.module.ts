@@ -1,11 +1,5 @@
-import {
-  Component,
-  InjectionToken,
-  NgModule,
-  Provider,
-} from '@angular/core';
+import { Component, InjectionToken, NgModule, Provider } from '@angular/core';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
-import { _DisposeViewRepeaterStrategy } from '@angular/cdk/collections';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 
 import { NbBidiModule } from '../bidi/bidi.module';
@@ -43,20 +37,16 @@ export const NB_TABLE_TEMPLATE = `
 /** @deprecated CDK 22 selects its view repeater strategy internally. */
 export const NB_VIEW_REPEATER_STRATEGY = new InjectionToken('_VIEW_REPEATER_STRATEGY');
 
-export const NB_TABLE_PROVIDERS: Provider[] = [
-  { provide: NB_VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
-  { provide: ViewportRuler, useExisting: NbViewportRulerAdapter },
-];
+export const NB_TABLE_PROVIDERS: Provider[] = [{ provide: ViewportRuler, useExisting: NbViewportRulerAdapter }];
 
 @Component({
-    selector: 'nb-table-not-implemented',
-    template: ``,
-    providers: NB_TABLE_PROVIDERS,
-    standalone: false
+  selector: 'nb-table-not-implemented',
+  template: ``,
+  providers: NB_TABLE_PROVIDERS,
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class NbTable<T> extends CdkTable<T> {
-}
+export class NbTable<T> extends CdkTable<T> {}
 
 const COMPONENTS = [
   NbTable,
@@ -89,8 +79,8 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [ NbBidiModule ],
-  declarations: [ ...COMPONENTS ],
-  exports: [ ...COMPONENTS ],
+  imports: [NbBidiModule],
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS],
 })
 export class NbTableModule extends CdkTableModule {}
