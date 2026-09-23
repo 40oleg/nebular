@@ -14,7 +14,7 @@ export class NbViewportRulerAdapter extends ViewportRuler {
               protected ruler: NbLayoutRulerService,
               protected scroll: NbLayoutScrollService,
               @Inject(NB_DOCUMENT) document: any) {
-    super(platform, ngZone, document);
+    super();
   }
 
   getViewportSize(): Readonly<{ width: number; height: number; }> {
