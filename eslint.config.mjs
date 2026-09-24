@@ -16,7 +16,7 @@ export default [
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: ['tsconfig.json', 'e2e/tsconfig.json'],
+        project: ['tsconfig.json', 'e2e/tsconfig.e2e.json'],
         createDefaultProgram: true,
       },
     },
@@ -61,6 +61,12 @@ export default [
           ],
         },
       ],
+    },
+  },
+  {
+    files: ['e2e/**/*.ts', 'playwright.config.ts'],
+    languageOptions: {
+      globals: { ...globals.node },
     },
   },
   ...forFiles(angular.configs.templateRecommended, ['**/*.html']),
